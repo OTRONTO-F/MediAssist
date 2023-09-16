@@ -1,15 +1,27 @@
+# Import the regular expression library
 import re
+# Import the pandas library
 import pandas as pd
+# Import the text-to-speech library
 import pyttsx3
+# Import preprocessing functions from scikit-learn
 from sklearn import preprocessing
+# Import DecisionTreeClassifier and _tree
 from sklearn.tree import DecisionTreeClassifier, _tree
-import numpy as np
+import numpy as np  # Import the numpy library
+# Import train_test_split function
 from sklearn.model_selection import train_test_split
+# Import cross_val_score function
 from sklearn.model_selection import cross_val_score
+# Import Support Vector Classifier
 from sklearn.svm import SVC
+# Import the CSV module
 import csv
+# Import the smtplib library for sending emails
 import smtplib
+# Import MIMEText for creating email messages
 from email.mime.text import MIMEText
+# Import warnings to disable DeprecationWarnings
 import warnings
 
 # Disable DeprecationWarnings
@@ -32,21 +44,32 @@ le = preprocessing.LabelEncoder()
 le.fit(y)
 y = le.transform(y)
 
+# Split the data into training and testing sets
 x_train, x_test, y_train, y_test = train_test_split(
     x, y, test_size=0.33, random_state=42)
+
+# Prepare the testing data
 testx = testing[cols]
 testy = testing['prognosis']
 testy = le.transform(testy)
 
+# Create a Decision Tree classifier
 clf1 = DecisionTreeClassifier()
+
+# Fit the Decision Tree model with the training data
 clf = clf1.fit(x_train, y_train)
 
-# Evaluate the model
+# Evaluate the Decision Tree model using cross-validation
 scores = cross_val_score(clf, x_test, y_test, cv=3)
 print("Cross-validation scores:", scores.mean())
 
+# Create an SVM classifier
 model = SVC()
+
+# Fit the SVM model with the training data
 model.fit(x_train, y_train)
+
+# Print the accuracy of the SVM model on the testing data
 print("SVM accuracy:", model.score(x_test, y_test))
 
 # Import feature importance values
