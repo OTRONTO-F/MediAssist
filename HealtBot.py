@@ -172,9 +172,9 @@ def getprecautionDict():
 
 def getInfo():
     print("\n\n----------------------------------------------------------------------------------------")
-    print("-----------------------------------HealthCare ChatBot-----------------------------------")
+    print("----------------------------------------MediAssist--------------------------------------")
     print("----------------------------------------------------------------------------------------")
-    readn("Hello! Wellcome to HealthCare ChatBot")
+    readn("Hello! Wellcome to MediAssist")
     print("\nPlease Enter Your Name: ", end="->\t")
     readn("Please Enter Your Name: ")
     name = input("")
@@ -380,9 +380,9 @@ def send_email_results(email, results, user_symptoms, predicted_disease, disease
         smtp_username = "thirayutsodaying@gmail.com"
         smtp_password = "B9C7CEE1AEE5F8DC02B30AA4E70DB341ABFB"
 
-        subject = "HealthCare ChatBot Results"
+        subject = "MediAssist Results"
         message = f"Hello,\n\n"
-        message += f"Thank you for using HealthCare ChatBot to assess your symptoms.\n\n"
+        message += f"Thank you for using MediAssist to assess your symptoms.\n\n"
         message += f"Here are the results based on your input:\n\n"
 
         # Add user's symptoms
@@ -408,7 +408,7 @@ def send_email_results(email, results, user_symptoms, predicted_disease, disease
             message += "\n"
 
         message += f"We recommend consulting a healthcare professional for further evaluation and treatment.\n\n"
-        message += f"Thank you for using HealthCare ChatBot!\n\n"
+        message += f"Thank you for using MediAssist!\n\n"
 
         msg = MIMEText(message)
         msg['Subject'] = subject
@@ -436,6 +436,6 @@ getInfo()
 # Start the chatbot
 tree_to_code(clf, cols)
 print("\n------------------------------------------------------------------------------------------------------------------------------------------------------")
-print("---------------------------------------------Thank you for using HealthCare ChatBot. Goodbye!---------------------------------------------------------")
+print("----------------------------------------------------Thank you for using MediAssist. Goodbye!----------------------------------------------------------")
 print("------------------------------------------------------------------------------------------------------------------------------------------------------")
-readn("Thank you for using HealthCare ChatBot. Goodbye!")
+readn("Thank you for using MediAssist. Goodbye!")
