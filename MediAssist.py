@@ -111,7 +111,7 @@ def calc_condition(exp, days):
     sum = 0
     for item in exp:
         sum = sum + severityDictionary[item]
-    print("\n\n\n\n\n\n\n\n----------------------------------------------------------------------------------------")
+    print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n----------------------------------------------------------------------------------------")
     print("Overall Severity of Disease: ")
     readn("Overall Severity of Disease: ")
     if sum <= 4:
@@ -167,19 +167,28 @@ def getprecautionDict():
             _prec = {row[0]: [row[1], row[2], row[3], row[4]]}
             precautionDictionary.update(_prec)
 
+
 # Get user information and introduce the chatbot
 
 
 def getInfo():
-    print("\n\n----------------------------------------------------------------------------------------")
+    print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n----------------------------------------------------------------------------------------")
     print("----------------------------------------MediAssist--------------------------------------")
     print("----------------------------------------------------------------------------------------")
     readn("Hello! Wellcome to MediAssist")
+
     print("\nPlease Enter Your Name: ", end="->\t")
     readn("Please Enter Your Name: ")
     name = input("")
-    print("\nHello, ", name)
-    readn("Hello, " + name)
+    try:
+        print("\nPlease Enter Your Age: ", end="->\t")
+        readn("Please Enter Your Age: ")
+        age = int(input(""))
+    except ValueError:
+        print("Please enter a valid number.")
+        readn("Please enter a valid number.")
+    print("\nHello, " + name + "!")
+    readn("Hello, " + name + "!")
 
 # Check for symptom pattern
 
@@ -342,12 +351,14 @@ def tree_to_code(tree, feature_names):
             if send_email:
                 readn("Please enter your email address: ")
                 email = input("\nPlease enter your email address: ")
+                name = input("\nPlease tell me your first and last name: ")
                 send_email_results(
                     email,
                     [present_disease[0], description_list[present_disease[0]]],
                     symptoms_exp,
                     present_disease[0],
-                    description_list[present_disease[0]]
+                    description_list[present_disease[0]],
+                    name
                 )
 
     recurse(0, 1)
@@ -373,15 +384,15 @@ def ask_for_email():
 # Function to send results via email
 
 
-def send_email_results(email, results, user_symptoms, predicted_disease, disease_description):
+def send_email_results(email,result, user_symptoms, predicted_disease, disease_description,name):
     try:
         smtp_server = "smtp.elasticemail.com"
         smtp_port = 2525
-        smtp_username = "thirayutsodaying@gmail.com"
-        smtp_password = "B9C7CEE1AEE5F8DC02B30AA4E70DB341ABFB"
+        smtp_username = "mediassist.diagnostics@gmail.com"
+        smtp_password = "5B63099E1528B89E766E06C8A650D0BE0BE1"
 
         subject = "MediAssist Results"
-        message = f"Hello,\n\n"
+        message = f"Hello! {name},\n\n"
         message += f"Thank you for using MediAssist to assess your symptoms.\n\n"
         message += f"Here are the results based on your input:\n\n"
 
