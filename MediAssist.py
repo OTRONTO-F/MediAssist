@@ -352,6 +352,7 @@ def tree_to_code(tree, feature_names):
                 readn("Please enter your email address: ")
                 email = input("\nPlease enter your email address: ")
                 name = input("\nPlease tell me your first and last name: ")
+                readn("Please tell me your first and last name: ")
                 send_email_results(
                     email,
                     [present_disease[0], description_list[present_disease[0]]],
