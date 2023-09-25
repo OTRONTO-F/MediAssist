@@ -24,6 +24,21 @@ from email.mime.text import MIMEText
 # Import warnings to disable DeprecationWarnings
 import warnings
 
+# ANSI escape codes for text color
+
+
+class Color:
+    BLACK = '\033[30m'
+    RED = '\033[31m'
+    GREEN = '\033[32m'
+    YELLOW = '\033[33m'
+    BLUE = '\033[34m'
+    MAGENTA = '\033[35m'
+    CYAN = '\033[36m'
+    WHITE = '\033[37m'
+    END = '\033[0m'  # Reset text color to default
+
+
 # Disable DeprecationWarnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
@@ -61,7 +76,7 @@ clf = clf1.fit(x_train, y_train)
 
 # Evaluate the Decision Tree model using cross-validation
 scores = cross_val_score(clf, x_test, y_test, cv=3)
-print("Cross-validation scores:", scores.mean())
+print(Color.GREEN + "Cross-validation scores:", scores.mean(), Color.END)
 
 # Create an SVM classifier
 model = SVC()
@@ -70,7 +85,7 @@ model = SVC()
 model.fit(x_train, y_train)
 
 # Print the accuracy of the SVM model on the testing data
-print("SVM accuracy:", model.score(x_test, y_test))
+print(Color.YELLOW + "SVM accuracy:", model.score(x_test, y_test), Color.END)
 
 # Import feature importance values
 importances = clf.feature_importances_
@@ -111,27 +126,29 @@ def calc_condition(exp, days):
     sum = 0
     for item in exp:
         sum = sum + severityDictionary[item]
-    print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n----------------------------------------------------------------------------------------")
-    print("Overall Severity of Disease: ")
+    print(Color.YELLOW + "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n----------------------------------------------------------------------------------------" + Color.END)
+    print(Color.MAGENTA + "Overall Severity of Disease: " + Color.END)
     readn("Overall Severity of Disease: ")
     if sum <= 4:
-        print("\nYou may have a mild case of the disease.")
+        print(Color.GREEN + "\nYou may have a mild case of the disease." + Color.END)
         readn("You may have a mild case of the disease.")
     elif sum <= 7:
-        print("\nYou may have a moderate case of the disease.")
+        print(Color.YELLOW +
+              "\nYou may have a moderate case of the disease." + Color.END)
         readn("You may have a moderate case of the disease.")
     else:
-        print("\nYou may have a severe case of the disease.")
+        print(Color.RED + "\nYou may have a severe case of the disease." + Color.END)
         readn("You may have a severe case of the disease.")
-    print("\nSeverity of your symptoms: ", sum)
+    print(Color.MAGENTA + "\nSeverity of your symptoms: ",
+          Color.WHITE, sum, Color.END)
     readn("Severity of your symptoms: " + str(sum))
-    print("\nYou may have the following diseases: ")
+    print(Color.MAGENTA + "\nYou may have the following diseases: " + Color.END)
     readn("You may have the following diseases: ")
     if (sum * days) / (len(exp) + 1) > 13:
-        print("\nIt is recommended to consult a doctor.")
+        print(Color.RED + "\nIt is recommended to consult a doctor." + Color.END)
         readn("It is recommended to consult a doctor.")
     else:
-        print("\nIt might not be that serious, but you should take precautions.")
+        print(Color.GREEN + "\nIt might not be that serious, but you should take precautions." + Color.END)
         readn("It might not be that serious, but you should take precautions.")
 
 # Load disease descriptions from CSV
@@ -172,22 +189,27 @@ def getprecautionDict():
 
 
 def getInfo():
-    print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n----------------------------------------------------------------------------------------")
-    print("----------------------------------------MediAssist--------------------------------------")
-    print("----------------------------------------------------------------------------------------")
+    print(Color.YELLOW + "\n\n\n\n\n\n\n\n\n\n\n\n\n\n------------------------------------------------------------------------------------------")
+    print("----------------------------------------"+Color.END+Color.CYAN +
+          " MediAssist "+Color.END+Color.YELLOW+"--------------------------------------")
+    print("------------------------------------------------------------------------------------------", Color.END)
     readn("Hello! Wellcome to MediAssist")
 
-    print("\nPlease Enter Your Name: ", end="->\t")
+    print(Color.YELLOW + "\nPlease Enter Your Name: ",
+          Color.END, Color.MAGENTA, end="->\t" + Color.END)
     readn("Please Enter Your Name: ")
     name = input("")
-    try:
-        print("\nPlease Enter Your Age: ", end="->\t")
-        readn("Please Enter Your Age: ")
-        age = int(input(""))
-    except ValueError:
-        print("Please enter a valid number.")
-        readn("Please enter a valid number.")
-    print("\nHello, " + name + "!")
+    while True:
+        try:
+            print(Color.YELLOW + "\nPlease Enter Your Age: ",
+                  Color.END, Color.MAGENTA, end="->\t" + Color.END)
+            readn("Please Enter Your Age: ")
+            age = int(input(""))
+            break
+        except ValueError:
+            print(Color.RED + "Please enter a valid number." + Color.END)
+            readn("Please enter a valid number.")
+    print(Color.BLUE + "\nHello, " + name + "!", Color.END)
     readn("Hello, " + name + "!")
 
 # Check for symptom pattern
@@ -246,25 +268,27 @@ def tree_to_code(tree, feature_names):
     symptoms_present = []
 
     while True:
-        print("\nEnter the symptom you are experiencing (Press enter to view details.): ", end="->  ")
+        print(Color.MAGENTA + "\nEnter the symptom you are experiencing (Press enter to view details.): ", Color.END, Color.MAGENTA,
+              end="->  " + Color.END)
         readn("Enter the symptom you are experiencing (Press enter to view details.): ")
         disease_input = input("")
         conf, cnf_dis = check_pattern(chk_dis, disease_input)
         if conf == 1:
-            print("\nSearches related to input: ")
+            print(Color.MAGENTA + "\nSearches related to input: ")
             readn("Searches related to input: ")
             for num, it in enumerate(cnf_dis):
-                print(num, ")", it)
+                print(Color.CYAN + str(num) + Color.END + Color.RED +
+                      ") " + Color.END + Color.YELLOW + it + Color.END)
             if num != 0:
                 while True:
                     try:
                         print(
-                            f"\nSelect the one you meant (0 - {num}):  ", end="")
+                            Color.MAGENTA + f"\nSelect the one you meant (0 - {num}):  ", end="" + Color.END)
                         readn(f"Select the one you meant (0 - {num}):  ")
                         conf_inp = int(input(""))
                         break
                     except ValueError:
-                        print("Please enter a valid number.")
+                        print(Color.RED + "Please enter a valid number." + Color.END)
                         readn("Please enter a valid number.")
             else:
                 conf_inp = 0
@@ -272,17 +296,17 @@ def tree_to_code(tree, feature_names):
             disease_input = cnf_dis[conf_inp]
             break
         else:
-            print("Enter a valid symptom.")
+            print(Color.RED + "Enter a valid symptom." + Color.END)
             readn("Enter a valid symptom.")
 
     while True:
         try:
             readn("How many days have you been experiencing this symptom? : ")
             num_days = int(
-                input("\nHow many days have you been experiencing this symptom? : "))
+                input(Color.MAGENTA + "\nHow many days have you been experiencing this symptom? : " + Color.END))
             break
         except:
-            print("Please enter a valid number.")
+            print(Color.RED + "Please enter a valid number." + Color.END)
             readn("Please enter a valid number.")
 
     def recurse(node, depth):
@@ -305,19 +329,22 @@ def tree_to_code(tree, feature_names):
             red_cols = reduced_data.columns
             symptoms_given = red_cols[reduced_data.loc[present_disease].values[0].nonzero(
             )]
-            print("\nAre you experiencing any of the following symptoms?")
+            print(Color.MAGENTA +
+                  "\nAre you experiencing any of the following symptoms?" + Color.END)
             readn("Are you experiencing any of the following symptoms?")
             symptoms_exp = []
             for syms in list(symptoms_given):
                 inp = ""
-                print("\n", syms, "?         (yes/no): ", end='')
+                print(Color.YELLOW + "\n" + syms + " ?" + Color.END + "\t\t(" +
+                      Color.CYAN + "yes" + Color.END + "/" + Color.RED + "no" + Color.END + "): ", end='')
                 readn(syms + "?")
                 while True:
                     inp = input("")
                     if (inp == "yes" or inp == "no"):
                         break
                     else:
-                        print("\nPlease provide a valid answer (yes/no): ", end="")
+                        print(
+                            Color.RED + "\nPlease provide a valid answer (yes/no): ", end="" + Color.END)
                         readn("Please provide a valid answer (yes/no): ")
                 if (inp == "yes"):
                     symptoms_exp.append(syms)
@@ -325,34 +352,42 @@ def tree_to_code(tree, feature_names):
             second_prediction = sec_predict(symptoms_exp)
             calc_condition(symptoms_exp, num_days)
             if (present_disease[0] == second_prediction[0]):
-                print("\nYou may have ", present_disease[0])
+                print(Color.YELLOW + "\nYou may have ", Color.END,
+                      Color.RED, present_disease[0], Color.END)
                 readn("You may have " + present_disease[0])
-                print("\n", description_list[present_disease[0]])
+                print(Color.BLUE + "\n",
+                      description_list[present_disease[0]] + Color.END)
 
             else:
-                print("\nYou may have ",
-                      present_disease[0], "or ", second_prediction[0])
+                print(Color.YELLOW + "\nYou may have ", Color.RED,
+                      present_disease[0], Color.END, Color.YELLOW, "or ", Color.END, Color.RED,  second_prediction[0], Color.END)
                 readn("You may have " +
                       present_disease[0] + "or " + second_prediction[0])
-                print("\n", description_list[present_disease[0]])
-                print("\n", description_list[second_prediction[0]])
+                print(Color.BLUE + "\n",
+                      description_list[present_disease[0]] + Color.END)
+                print(Color.BLUE + "\n",
+                      description_list[second_prediction[0]] + Color.END)
 
             # Display precautions
             if present_disease[0] in precautionDictionary:
-                print("\nPrecautions:")
+                print(Color.MAGENTA + "\nPrecautions:" + Color.END)
                 readn("Precautions:")
                 precautions = precautionDictionary[present_disease[0]]
                 for precaution in precautions:
-                    print(f"- {precaution}")
+                    print(Color.MAGENTA + "- " + Color.END +
+                          Color.YELLOW + f"{precaution}" + Color.END)
                     readn(precaution)
 
             # Ask if the user wants to receive results via email
             send_email = ask_for_email()
             if send_email:
                 readn("Please enter your email address: ")
-                email = input("\nPlease enter your email address: ")
-                name = input("\nPlease tell me your first and last name: ")
+                email = input(
+                    Color.MAGENTA + "\nPlease enter your email address: " + Color.END)
                 readn("Please tell me your first and last name: ")
+                name = input(
+                    Color.MAGENTA + "\nPlease tell me your first and last name: " + Color.END)
+
                 send_email_results(
                     email,
                     [present_disease[0], description_list[present_disease[0]]],
@@ -370,22 +405,23 @@ def tree_to_code(tree, feature_names):
 
 def ask_for_email():
     while True:
-        readn("Do you want to receive the results via email? (yes/no): ")
-        send_email = input(
-            "\nDo you want to receive the results via email? (yes/no): ").strip().lower()
+        readn("Do you want to receive the results via email? (yes/no)")
+        send_email = input(Color.MAGENTA +
+                           "\nDo you want to receive the results via email? (" + Color.CYAN +
+                           "yes" + Color.END + "/" + Color.RED + "no" + Color.END + "): " + Color.END).strip().lower()
 
         if send_email == 'yes':
             return True
         elif send_email == 'no':
             return False
         else:
-            print("Please enter 'yes' or 'no'.")
+            print(Color.RED + "Please enter 'yes' or 'no'.")
             readn("Please enter 'yes' or 'no'.")
 
 # Function to send results via email
 
 
-def send_email_results(email,result, user_symptoms, predicted_disease, disease_description,name):
+def send_email_results(email, result, user_symptoms, predicted_disease, disease_description, name):
     try:
         smtp_server = "smtp.elasticemail.com"
         smtp_port = 2525
@@ -432,10 +468,10 @@ def send_email_results(email,result, user_symptoms, predicted_disease, disease_d
         server.login(smtp_username, smtp_password)
         server.sendmail(smtp_username, [email], msg.as_string())
         server.quit()
-        print("\nResults sent to your email successfully!")
+        print(Color.CYAN + "\nResults sent to your email successfully!")
         readn("Results sent to your email successfully!")
     except Exception as e:
-        print("\nError sending email:", str(e))
+        print(Color.RED + "\nError sending email:", str(e))
         readn("Error sending email:")
 
 
@@ -447,7 +483,8 @@ getInfo()
 
 # Start the chatbot
 tree_to_code(clf, cols)
-print("\n------------------------------------------------------------------------------------------------------------------------------------------------------")
-print("----------------------------------------------------Thank you for using MediAssist. Goodbye!----------------------------------------------------------")
-print("------------------------------------------------------------------------------------------------------------------------------------------------------")
+print(Color.YELLOW + "\n--------------------------------------------------------------------------------------------------------------------------------------------------------")
+print("----------------------------------------------------" + Color.END + Color.CYAN +
+      " Thank you for using MediAssist. Goodbye! " + Color.END + Color.YELLOW + "----------------------------------------------------------")
+print(Color.YELLOW + "--------------------------------------------------------------------------------------------------------------------------------------------------------" + Color.END)
 readn("Thank you for using MediAssist. Goodbye!")
