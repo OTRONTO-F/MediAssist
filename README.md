@@ -4,17 +4,19 @@ MediAssist is a Python program dedicated to improving healthcare by delivering d
 
 Key Features:
 
-1. Symptom-Based Diagnosis: MediAssist uses state-of-the-art Decision Trees and SVM algorithms to accurately diagnose diseases based on the symptoms provided by users.
+1. **Symptom-Based Diagnosis:** MediAssist uses state-of-the-art Decision Trees and SVM algorithms to accurately diagnose diseases based on the symptoms provided by users.
 
-2. Personalized Recommendations: Tailored recommendations for disease management and treatment are generated, ensuring users receive the most appropriate advice for their specific symptoms.
+2. **Personalized Recommendations:** Tailored recommendations for disease management and treatment are generated, ensuring users receive the most appropriate advice for their specific symptoms.
 
-3. Comprehensive Information: Users can access detailed information about various diseases, including causes, symptoms, and available treatment options.
+3. **Comprehensive Information:** Users can access detailed information about various diseases, including causes, symptoms, and available treatment options.
 
-4. User-Friendly Interface: The program offers an intuitive and user-friendly interface, making it accessible for individuals with varying levels of technical expertise.
+4. **User-Friendly Interface:** The program offers an intuitive and user-friendly interface, making it accessible for individuals with varying levels of technical expertise.
 
-5. Privacy and Security: MediAssist prioritizes user data privacy and employs robust security measures to safeguard sensitive health information.
+5. **Privacy and Security:** MediAssist prioritizes user data privacy and employs robust security measures to safeguard sensitive health information.
 
-6. Regular Updates: The program stays up-to-date with the latest medical research and guidelines to ensure accurate and relevant recommendations.
+6. **Regular Updates:** The program stays up-to-date with the latest medical research and guidelines to ensure accurate and relevant recommendations.
+
+7. **Sending Diagnosis Results via Email with MediAssist:** MediAssist allows you to send diagnosis results via email to receive immediate information and recommendations in your email inbox. Here's how it works.
 
 ## วิธีใช้
 
