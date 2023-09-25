@@ -1,8 +1,20 @@
 # MediAssist
 
-MediAssist เป็นโปรแกรม Python ที่ช่วยในการรักษาสุขภาพ ผ่านการให้คำแนะนำเกี่ยวกับโรคต่าง ๆ ตามอาการที่ผู้ใช้รายงาน โปรแกรมนี้สามารถทำการวินิจฉัยโรคโดยใช้ Decision Tree และ SVM (Support Vector Machine) และให้คำแนะนำเกี่ยวกับวิธีรักษาอย่างถูกต้องตามอาการที่ผู้ใช้รายงาน.
+MediAssist is a Python program dedicated to improving healthcare by delivering disease recommendations in response to user-reported symptoms. This powerful tool employs Decision Trees and Support Vector Machine (SVM) for accurate disease diagnosis and provides comprehensive guidance on the most suitable treatment methods, all based on the user's reported symptoms.
 
-MediAssist is a Python program designed to assist with healthcare by providing recommendations for various diseases based on the symptoms reported by users. This program can perform disease diagnosis using Decision Trees and Support Vector Machine (SVM) and offer guidance on appropriate treatment methods based on the symptoms reported by users.
+Key Features:
+
+1. Symptom-Based Diagnosis: MediAssist uses state-of-the-art Decision Trees and SVM algorithms to accurately diagnose diseases based on the symptoms provided by users.
+
+2. Personalized Recommendations: Tailored recommendations for disease management and treatment are generated, ensuring users receive the most appropriate advice for their specific symptoms.
+
+3. Comprehensive Information: Users can access detailed information about various diseases, including causes, symptoms, and available treatment options.
+
+4. User-Friendly Interface: The program offers an intuitive and user-friendly interface, making it accessible for individuals with varying levels of technical expertise.
+
+5. Privacy and Security: MediAssist prioritizes user data privacy and employs robust security measures to safeguard sensitive health information.
+
+6. Regular Updates: The program stays up-to-date with the latest medical research and guidelines to ensure accurate and relevant recommendations.
 
 ## วิธีใช้
 
