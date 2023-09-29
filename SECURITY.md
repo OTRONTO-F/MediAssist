@@ -2,7 +2,7 @@
 
 ## Reporting a Vulnerability
 
-If you discover a security vulnerability in MediAssist, please report it by sending an email to [security@example.com](mailto:security@example.com). Do not create a public GitHub issue.
+If you discover a security vulnerability in MediAssist, please report it by sending an email to [teerayut.so@kkumail.com](mailto:teerayut.so@kkumail.com). Do not create a public GitHub issue.
 
 We appreciate your help in disclosing the issue responsibly.
 
