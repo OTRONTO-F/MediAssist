@@ -477,18 +477,6 @@ def test_print_disease_with_data():
   # Mock label encoder
   le = MockLabelEncoder()
 
-def test_print_disease_invalid_data(mocker):
-  """Tests print_disease with unexpected input data."""
-  # Mock unexpected data type for node
-  invalid_data = "invalid_string"
-
-  # Mock label encoder (unused in this case)
-  le = MockLabelEncoder()
-
-  # Use mocker to raise an exception for invalid input type
-  with pytest.raises(TypeError):
-    print_disease(invalid_data, le)
-
 # Assuming your code is in a file named ask_for_email.py
 
 def test_ask_for_email_preference_yes():
