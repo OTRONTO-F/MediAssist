@@ -5,3 +5,4 @@ numpy
 secure-smtplib
 matplotlib
 seaborn
+pytest
