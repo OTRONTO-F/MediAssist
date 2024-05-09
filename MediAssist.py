@@ -23,6 +23,12 @@ import smtplib
 from email.mime.text import MIMEText
 # Import warnings to disable DeprecationWarnings
 import warnings
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.metrics import confusion_matrix
+from sklearn.tree import export_graphviz
+
+
 
 # ANSI escape codes for text color
 
@@ -87,14 +93,40 @@ model.fit(x_train, y_train)
 # Print the accuracy of the SVM model on the testing data
 print(Color.YELLOW + "SVM accuracy:", model.score(x_test, y_test), Color.END)
 
+
 # Import feature importance values
 importances = clf.feature_importances_
 indices = np.argsort(importances)[::-1]
 features = cols
 
+# Create a bar chart for feature importance
+plt.figure(figsize=(10, 6))
+sns.barplot(x=features[indices], y=importances[indices])
+plt.xlabel('Features')
+plt.ylabel('Importance')
+plt.title('Feature Importance')
+plt.xticks(rotation=45, ha='right')
+plt.show()
+# Assuming you have the feature importances in 'importances'
+top_n_features = 10  # Choose the number of top features to display
+top_features_indices = indices[:top_n_features]  # Get indices of top features
+
+
+# Predict on the testing data
+y_pred = clf.predict(x_test)
+
+# Create a confusion matrix
+cm = confusion_matrix(y_test, y_pred)
+
+# Create a heatmap of the confusion matrix
+plt.figure(figsize=(8, 6))
+sns.heatmap(cm, annot=True, fmt='d', cbar=True)
+plt.xlabel('Predicted')
+plt.ylabel('Actual')
+plt.title('Confusion Matrix')
+plt.show()
+
 # Initialize text-to-speech engine
-
-
 def readn(nstr):
     # ใช้ Regular Expression (regex) เพื่อลบตัวอักษร '_' ออกจากข้อความ
     cleaned_text = re.sub('_', ' ', nstr)

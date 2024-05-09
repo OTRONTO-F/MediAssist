@@ -6,3 +6,4 @@ secure-smtplib
 matplotlib
 seaborn
 pytest
+graphviz
